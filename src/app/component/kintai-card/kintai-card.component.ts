@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { interval, Observable } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-kintai-card',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kintai-card.component.scss']
 })
 export class KintaiCardComponent implements OnInit {
+  public date: string;
+  public time: string;
+  private timer: Observable<number>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.updateTime();
+    this.setTimer();
   }
 
+  private updateTime(): void {
+    this.date = moment().format('YYYY年M月DD日(ddd)');
+    this.time = moment().format('HH : mm ss');
+  }
+
+  private setTimer(): void {
+    this.timer = interval(1000);
+    this.timer.subscribe(() => this.updateTime());
+  }
 }

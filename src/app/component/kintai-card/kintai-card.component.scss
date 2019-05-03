@@ -7,5 +7,19 @@
     height: 60%;
     min-width: 220px;
     min-height: 320px;
+
+    .time-wrapper {
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+
+      .date {
+        margin-bottom: 10px
+      }
+
+      .time {
+        font-size: 40px;
+      }
+    }
   }
 }

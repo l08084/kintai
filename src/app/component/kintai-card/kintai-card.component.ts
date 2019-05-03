@@ -23,7 +23,7 @@ export class KintaiCardComponent implements OnInit {
 
   private updateTime(): void {
     this.date = moment().format('YYYY年M月DD日(ddd)');
-    this.time = moment().format('HH : mm ss');
+    this.time = moment().format('HH : mm : ss');
   }
 
   private setTimer(): void {

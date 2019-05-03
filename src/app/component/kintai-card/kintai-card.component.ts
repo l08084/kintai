@@ -15,6 +15,8 @@ export class KintaiCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    // momentにlang:jaを設定する
+    moment.lang('ja');
     this.updateTime();
     this.setTimer();
   }

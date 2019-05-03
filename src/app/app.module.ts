@@ -7,6 +7,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
@@ -25,6 +26,7 @@ import { KintaiCardComponent } from './component/kintai-card/kintai-card.compone
     MatToolbarModule,
     MatIconModule,
     MatSelectModule,
+    MatButtonModule,
     ReactiveFormsModule
   ],
   providers: [],

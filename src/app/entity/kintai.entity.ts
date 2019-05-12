@@ -1,8 +1,7 @@
 export interface KintaiEntity {
-  name: string;
-  position: number;
+  date: string;
   workTime: number;
   start: string;
   end: string;
-  breakTime: string;
+  breakTime: number;
 }

@@ -3,12 +3,11 @@ import { KintaiEntity } from 'src/app/entity/kintai.entity';
 
 const ELEMENT_DATA: KintaiEntity[] = [
   {
-    position: 1,
-    name: '2019/5/12',
+    date: '2019/5/12',
     workTime: 8.0,
     start: '9:00',
     end: '18:00',
-    breakTime: '1.0'
+    breakTime: 1.0
   }
 ];
 
@@ -19,8 +18,7 @@ const ELEMENT_DATA: KintaiEntity[] = [
 })
 export class KintaiTableComponent {
   displayedColumns: string[] = [
-    'position',
-    'name',
+    'date',
     'workTime',
     'start',
     'end',

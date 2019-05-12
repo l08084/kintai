@@ -21,6 +21,18 @@ export class KintaiCardComponent implements OnInit {
     this.setTimer();
   }
 
+  public startWork(): void {
+    console.log('startWork');
+  }
+
+  public endWork(): void {
+    console.log('endWork');
+  }
+
+  public startBreak(): void {
+    console.log('startBreak');
+  }
+
   private updateTime(): void {
     this.date = moment().format('YYYY年M月DD日(ddd)');
     this.time = moment().format('HH : mm : ss');

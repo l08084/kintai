@@ -14,9 +14,9 @@
       </div>
       <hr class="border">
       <div class="button-group">
-        <button mat-raised-button class="button" color="primary">出勤</button>
-        <button mat-raised-button class="button" color="accent">退勤</button>
-        <button mat-raised-button class="button" color="warn">休憩</button>
+        <button mat-raised-button class="button" color="primary" (click)="startWork()">出勤</button>
+        <button mat-raised-button class="button" color="accent" (click)="endWork()">退勤</button>
+        <button mat-raised-button class="button" color="warn" (click)="startBreak()">休憩</button>
       </div>
     </mat-card-content>
   </mat-card>

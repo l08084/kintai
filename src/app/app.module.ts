@@ -16,6 +16,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { KintaiCardComponent } from './component/kintai-card/kintai-card.component';
 import { KintaiTableComponent } from './component/kintai-table/kintai-table.component';
+import { AppRoutingModule } from './app-routing.module';
+
+// 設定ファイル
+import { environment } from './../environments//environment';
+
+// AngularFire
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -36,7 +44,10 @@ import { KintaiTableComponent } from './component/kintai-table/kintai-table.comp
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

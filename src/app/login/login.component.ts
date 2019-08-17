@@ -24,7 +24,11 @@ export class LoginComponent implements OnInit {
     this.passwordControl = this.loginFormGroup.get('password') as FormControl;
   }
 
-  public onSubmit() {}
+  public onSubmit() {
+    console.log(this.loginFormGroup.value);
+    console.log(this.emailControl.value);
+    console.log(this.passwordControl.value);
+  }
 
   public getErrorMessageToEmail() {
     return this.emailControl.hasError('required')

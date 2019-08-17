@@ -18,11 +18,27 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.createForm();
+    this.emailControl = this.loginFormGroup.get('email') as FormControl;
+    this.passwordControl = this.loginFormGroup.get('password') as FormControl;
   }
 
-  onSubmit() {}
+  public onSubmit() {}
+
+  public getErrorMessageToEmail() {
+    return this.emailControl.hasError('required')
+      ? 'You must enter a value'
+      : this.emailControl.hasError('email')
+      ? 'Not a valid email'
+      : '';
+  }
+
+  public getErrorMessageToPassword() {
+    return this.passwordControl.hasError('required')
+      ? 'You must enter a value'
+      : '';
+  }
 
   private createForm() {
     this.loginFormGroup = this.fb.group({

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-
-export class PrivateAPIKeySet {
-  constructor(public key: string, public secret: string) {}
-}
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  FormBuilder
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,22 @@ export class PrivateAPIKeySet {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  keySet = new PrivateAPIKeySet('', '');
-  hide = true;
-  constructor() {}
+  public loginFormGroup: FormGroup;
+  public emailControl: FormControl;
+  public passwordControl: FormControl;
 
-  ngOnInit() {}
+  constructor(private fb: FormBuilder) {}
 
-  onSubmit() {
-    console.log(this.keySet);
+  ngOnInit() {
+    this.createForm();
+  }
+
+  onSubmit() {}
+
+  private createForm() {
+    this.loginFormGroup = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
 }

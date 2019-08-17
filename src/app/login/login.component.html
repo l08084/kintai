@@ -5,19 +5,16 @@
       <mat-card-title class="login-title">taikin</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="onSubmit()" class="login-form" #loginForm="ngForm">
+      <form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="loginFormGroup">
         <mat-form-field>
-          <input matInput placeholder="email" id="key" [(ngModel)]="keySet.key" name="key" #key="ngModel" required>
-          <mat-error *ngIf="key.errors?.required">You must enter a value</mat-error>
+          <input matInput placeholder="email" id="email" formControlName="email">
         </mat-form-field>
 
         <mat-form-field>
-          <input [type]="hide ? 'password' : 'text'" matInput placeholder="password" id="secret" [(ngModel)]="keySet.secret" name="secret"
-            #secret="ngModel" required>
+          <input [type]="hide ? 'password' : 'text'" matInput placeholder="password" id="password" formControlName="password">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="secret.errors?.required">You must enter a value</mat-error>
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+        <button type="submit" mat-raised-button [disabled]="!loginFormGroup.valid" color="primary">Login</button>
       </form>
     </mat-card-content>
   </mat-card>

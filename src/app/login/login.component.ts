@@ -5,6 +5,8 @@ import {
   FormGroup,
   FormBuilder
 } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 /**
  * ログイン画面コンポーネント
@@ -26,7 +28,11 @@ export class LoginComponent implements OnInit {
   // passwordフォームのコントロール定義
   public passwordControl: FormControl;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) {}
 
   public ngOnInit() {
     this.createForm();
@@ -39,9 +45,16 @@ export class LoginComponent implements OnInit {
    *
    */
   public onSubmit() {
-    console.log(this.loginFormGroup.value);
-    console.log(this.emailControl.value);
-    console.log(this.passwordControl.value);
+    // メールアドレスとパスワードをFirebase Authenticationに渡す
+    this.afAuth.auth
+      .signInWithEmailAndPassword(
+        this.emailControl.value,
+        this.passwordControl.value
+      )
+      // ログインに成功したらホーム画面に遷移する
+      .then(user => this.router.navigate(['/home']))
+      // ログインに失敗したらエラーメッセージをログ出力
+      .catch(error => console.log(error));
   }
 
   /**

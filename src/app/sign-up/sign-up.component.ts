@@ -15,11 +15,11 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
   // FormGroup定義
-  public loginFormGroup: FormGroup;
-  // emailフォームのコントロール定義
+  public signUpFormGroup: FormGroup;
+  public userNameControl: FormControl;
   public emailControl: FormControl;
-  // passwordフォームのコントロール定義
   public passwordControl: FormControl;
+  public confirmPasswordControl: FormControl;
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +29,12 @@ export class SignUpComponent implements OnInit {
 
   public ngOnInit() {
     this.createForm();
-    this.emailControl = this.loginFormGroup.get('email') as FormControl;
-    this.passwordControl = this.loginFormGroup.get('password') as FormControl;
+    this.userNameControl = this.signUpFormGroup.get('userName') as FormControl;
+    this.emailControl = this.signUpFormGroup.get('email') as FormControl;
+    this.passwordControl = this.signUpFormGroup.get('password') as FormControl;
+    this.confirmPasswordControl = this.signUpFormGroup.get(
+      'confirmPassword'
+    ) as FormControl;
   }
 
   /**
@@ -77,9 +81,11 @@ export class SignUpComponent implements OnInit {
    *
    */
   private createForm() {
-    this.loginFormGroup = this.fb.group({
+    this.signUpFormGroup = this.fb.group({
+      userName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
     });
   }
 }

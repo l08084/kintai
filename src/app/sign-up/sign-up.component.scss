@@ -4,20 +4,20 @@
   align-items: center;
   margin-top: 15%;
 
-  .login-card {
+  .sign-up-card {
     width: 500px;
   }
 
-  .login-form {
+  .sign-up-form {
     display: flex;
     flex-direction: column;
 
-    .login-button {
+    .sign-up-button {
       margin-top: 20px;
     }
   }
 
-  .login-title {
+  .sign-up-title {
     font-weight: bold;
     font-size: 22px;
     color: #3f51b5;

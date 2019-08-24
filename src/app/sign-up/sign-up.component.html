@@ -8,7 +8,7 @@
       <form (ngSubmit)="onSubmit()" class="sign-up-form" [formGroup]="signUpFormGroup">
         <mat-form-field>
           <input matInput placeholder="user name" id="userName" formControlName="userName" required>
-          <mat-error *ngIf="userNameControl.invalid">{{getErrorMessageToEmail()}}</mat-error>
+          <mat-error *ngIf="userNameControl.invalid">{{getErrorMessageToUserName()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="email" id="email" formControlName="email" required>
@@ -25,7 +25,7 @@
           <input [type]="hide ? 'password' : 'text'"
             matInput placeholder="confirm password" id="confirmPassword" formControlName="confirmPassword" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="confirmPasswordControl.invalid">{{getErrorMessageToPassword()}}</mat-error>
+          <mat-error *ngIf="confirmPasswordControl.invalid">{{getErrorMessageToConfirmPassword()}}</mat-error>
         </mat-form-field>
         <button type="submit" class="sign-up-button" mat-raised-button [disabled]="!signUpFormGroup.valid" color="primary">Create your account</button>
       </form>

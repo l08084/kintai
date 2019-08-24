@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { CustomValidator } from '../validation/custom-validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -54,6 +55,12 @@ export class SignUpComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
+  public getErrorMessageToUserName() {
+    return this.userNameControl.hasError('required')
+      ? 'You must enter a value'
+      : '';
+  }
+
   /**
    * Eメールフォームにバリデーションエラーメッセージを表示
    *
@@ -66,11 +73,13 @@ export class SignUpComponent implements OnInit {
       : '';
   }
 
-  /**
-   * パスワードフォームにバリデーションエラーメッセージを表示
-   *
-   */
   public getErrorMessageToPassword() {
+    return this.passwordControl.hasError('required')
+      ? 'You must enter a value'
+      : '';
+  }
+
+  public getErrorMessageToConfirmPassword() {
     return this.passwordControl.hasError('required')
       ? 'You must enter a value'
       : '';
@@ -81,11 +90,16 @@ export class SignUpComponent implements OnInit {
    *
    */
   private createForm() {
-    this.signUpFormGroup = this.fb.group({
-      userName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
-    });
+    this.signUpFormGroup = this.fb.group(
+      {
+        userName: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
+        confirmPassword: ['', [Validators.required]]
+      },
+      {
+        validator: CustomValidator.matchPassword
+      }
+    );
   }
 }

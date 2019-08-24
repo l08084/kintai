@@ -2,10 +2,14 @@
 <div class="wrapper">
   <mat-card class="login-card">
     <mat-card-header>
-      <mat-card-title class="login-title">taikin</mat-card-title>
+      <mat-card-title class="login-title">Create an account</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="loginFormGroup">
+        <mat-form-field>
+          <input matInput placeholder="user name" id="email" formControlName="email" required>
+          <mat-error *ngIf="emailControl.invalid">{{getErrorMessageToEmail()}}</mat-error>
+        </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="email" id="email" formControlName="email" required>
           <mat-error *ngIf="emailControl.invalid">{{getErrorMessageToEmail()}}</mat-error>
@@ -17,7 +21,13 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="passwordControl.invalid">{{getErrorMessageToPassword()}}</mat-error>
         </mat-form-field>
-        <button type="submit" class="login-button" mat-raised-button [disabled]="!loginFormGroup.valid" color="primary">Login</button>
+        <mat-form-field>
+          <input [type]="hide ? 'password' : 'text'"
+            matInput placeholder="confirm password" id="password" formControlName="password" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="passwordControl.invalid">{{getErrorMessageToPassword()}}</mat-error>
+        </mat-form-field>
+        <button type="submit" class="login-button" mat-raised-button [disabled]="!loginFormGroup.valid" color="primary">Create your account</button>
       </form>
     </mat-card-content>
   </mat-card>

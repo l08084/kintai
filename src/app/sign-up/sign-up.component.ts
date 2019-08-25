@@ -39,22 +39,35 @@ export class SignUpComponent implements OnInit {
   }
 
   /**
-   * ログインボタン押下時に呼び出し
+   * アカウント登録ボタン押下時に呼び出し
    *
    */
   public onSubmit() {
-    // メールアドレスとパスワードをFirebase Authenticationに渡す
     this.afAuth.auth
-      .signInWithEmailAndPassword(
+      // Firebaseのアカウント登録処理の呼び出し
+      .createUserWithEmailAndPassword(
         this.emailControl.value,
         this.passwordControl.value
       )
-      // ログインに成功したらホーム画面に遷移する
-      .then(user => this.router.navigate(['/home']))
-      // ログインに失敗したらエラーメッセージをログ出力
-      .catch(error => console.log(error));
+      .then(created => {
+        const newUser = created.user;
+        // 作成したアカウントにdisplayNameを設定する
+        newUser
+          .updateProfile({
+            displayName: this.userNameControl.value,
+            photoURL: ''
+          })
+          .then(() => {
+            // アカウント登録処理が成功したらログイン画面に戻る
+            this.router.navigate(['/login']);
+          });
+      });
   }
 
+  /**
+   * ユーザーネームフォームにバリデーションエラーメッセージを表示
+   *
+   */
   public getErrorMessageToUserName() {
     return this.userNameControl.hasError('required')
       ? 'You must enter a value'
@@ -73,6 +86,10 @@ export class SignUpComponent implements OnInit {
       : '';
   }
 
+  /**
+   * Eメールフォームにバリデーションエラーメッセージを表示
+   *
+   */
   public getErrorMessageToPassword() {
     return this.passwordControl.hasError('required')
       ? 'You must enter a value'
@@ -100,6 +117,7 @@ export class SignUpComponent implements OnInit {
         confirmPassword: ['', [Validators.required]]
       },
       {
+        // パスワードと確認パスワードが一致しているか確認するバリデーション
         validator: CustomValidator.matchPassword
       }
     );

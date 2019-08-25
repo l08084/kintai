@@ -80,8 +80,10 @@ export class SignUpComponent implements OnInit {
   }
 
   public getErrorMessageToConfirmPassword() {
-    return this.passwordControl.hasError('required')
+    return this.confirmPasswordControl.hasError('required')
       ? 'You must enter a value'
+      : this.confirmPasswordControl.hasError('notMatchPassword')
+      ? 'Password and confirm password do not match'
       : '';
   }
 
